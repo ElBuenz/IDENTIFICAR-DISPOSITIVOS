@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del dispositivo</title>
+</head>
+<body>
+    <h1>Información del Dispositivo</h1>
+    <p><strong>Modelo:</strong> <span id="deviceModel"></span></p>
+    <p><strong>IP Pública:</strong> <span id="ipAddress"></span></p>
+    
+    <script>
+        // Obtener el modelo del dispositivo
+        var deviceModel = navigator.userAgent;
+
+        // Mostrar el modelo del dispositivo
+        document.getElementById('deviceModel').textContent = deviceModel;
+
+        // Obtener la IP pública usando la API ipify
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ipAddress').textContent = data.ip;
+            })
+            .catch(err => console.log('Error al obtener la IP:', err));
+    </script>
+</body>
+</html>
